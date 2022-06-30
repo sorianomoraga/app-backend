@@ -8,8 +8,6 @@
     </fieldset>
 <div class="align-items-center d-flex justify-content-end">
     <?= $this->Form->button(__('Login'),['class'=>'btn btn-success mr-1']); ?>
-
-    <?= $this->Html->link(__('Add'),'/users/add',['class'=>'btn btn-primary']); ?>
 </div>
 <?= $this->Form->end() ?>
 </div>
