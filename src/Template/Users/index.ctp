@@ -1,5 +1,22 @@
 <h4>List users</h4>
 
+<div class="">
+	<?= $this->Form->create($users,['type'=>'get']) ?>
+	    <div class="form-group">
+	    	<div>
+	    		<label for="">Buscar</label>
+	        	<?= $this->Form->input('search',['label'=>false,'class'=>'form-control mb-1','placeholder'=>'Search for id, email, name, last name and role','type'=>'text','value'=>$q]) ?>
+	    	</div>
+	        <div class="d-flex">
+	        	<?= $this->Form->input('reset',['label'=>false,'type'=>'reset','class'=>'btn btn-info']) ?>
+	        	<?= $this->Form->button(__('Search'),['class'=>'btn btn-success ml-1']); ?>
+	        </div>
+	        
+		    
+		</div>
+	<?= $this->Form->end() ?>
+</div>
+
 <table class="table table-bordered">
 	<tr>
 		<th>ID</th>
@@ -68,3 +85,7 @@
 		<?php endforeach; ?>
 	</tbody>
 </table>
+
+<?php 
+    echo $this->Html->script('script-jq', ['block' => 'scriptBottom']);
+?>

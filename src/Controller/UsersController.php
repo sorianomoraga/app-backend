@@ -39,8 +39,34 @@ class UsersController extends AppController
 	}
 
      public function index()
-     {
-        $this->set('users', $this->Users->find()->all());
+     {  
+        $q = '';
+        if(!empty($this->request->query['search']) && !is_null($this->request->query['search'])){
+            $params = explode(' ',$this->request->query['search']);
+            $column = [
+                'first_name LIKE',
+                'username LIKE',
+                'last_name LIKE',
+                'role LIKE',
+                'CAST(id as CHAR) LIKE'
+            ];
+            $s = [];
+            foreach($column as $col){
+                foreach($params as $p){
+                    if(is_numeric($p)){
+                        $search[] = [$col => '%'.$p.'%'];
+                    }
+                    $search[] = [$col => '%'.$p.'%'];
+                }
+            }
+            $conditions["OR"] = $search;
+            $q = $this->request->query['search'];
+            $this->set('users', $this->Users->find()->where($conditions)->all());
+        }
+        else{
+            $this->set('users', $this->Users->find()->all());
+        }
+        $this->set('q',$q);
     }
 
     public function view($id)
@@ -111,6 +137,5 @@ class UsersController extends AppController
         
         $this->set('user',$user);
     }
-
 
 }

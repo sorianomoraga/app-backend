@@ -84,6 +84,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </div>
 
     <footer>
+        <script>
+            FULL_BASE_URL = '<?= FULL_BASE_URL ?>'
+        </script>
         <?= $this->Html->script('https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js') ?>
         <?= $this->Html->script('https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js') ?>
         <?= $this->fetch('scriptBottom')?>
